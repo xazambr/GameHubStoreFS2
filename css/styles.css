@@ -1,0 +1,14 @@
+:root {
+--color-fondo: #120E1a;
+--color-superficie: #1E1730;
+--color-primario: #D6236A;
+--color-acento: #00D2FF;
+--color-texto: #F3EFFA ;
+--color-error: #FF7A7A;
+--radio-borde: 8px;
+}
+
+body { background: var(--color-fondo); color: var(--color-texto); }
+.tarjeta { background: var(--color-superficie); border-radius: var(--radio-borde); }
+.boton-primario { background: var(--color-primario); }
+.mensaje-error { color: var(--color-error); }
