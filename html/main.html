@@ -3,11 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+    <title>Gamehub Store</title>
 </head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/styles.css">
 <body>
-<h1>ASDSADSA</h1>
-    
+<header>
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container-xl">
+
+      <a href="/index.html" class="logo navbar-brand" aria-label="GameHub Store - Inicio">
+        <span class="logo-game">GAME</span><span class="logo-hub">HUB</span>
+        <span class="logo-sub ms-1">STORE</span>
+      </a>
+
+      <div class="d-flex align-items-center gap-2 order-lg-last">
+        <a href="/carrito.html" class="btn btn-ghost position-relative px-2 py-1" aria-label="Ver carrito de compras">
+          🛒
+          <span id="carrito-badge" class="carrito-badge d-none">0</span>
+        </a>
+        <button class="navbar-toggler ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto gap-1 py-2 py-lg-0">
+          <li class="nav-item">
+            <a class="nav-link activo" href="/index.html" data-pagina="inicio">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/catalogo.html" data-pagina="catalogo">Catalogo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/ordenes.html" data-pagina="ordenes">Mis Ordenes</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+</header>
+
+  <!-- HERO -->
+  <section class="position-relative overflow-hidden" >
+    <img class="hero-img"
+      src="https://images.unsplash.com/photo-1593640495253-23196b27a87f?w=1400&h=600&fit=crop&auto=format"
+      alt="Gaming setup con iluminacion RGB"
+    />
+   
+    <div class="container-xl position-relative py-5">
+        <span class="hero-oferta d-inline-block mb-3 px-3 py-1 rounded-pill">
+          ⚡ OFERTAS ESPECIALES ACTIVAS
+        </span>
+        <h1 class="hero-titulo mb-3">
+          EL GEAR QUE<br>NECESITAS PARA<br>DOMINAR
+        </h1>
+        <p class="hero-descripcion mb-4" >
+          Notebooks gaming, GPUs de ultima generacion, consolas, perifericos y mas. Envio a todo Chile.
+        </p>
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="/catalogo.html" class="btn btn-primario btn-lg px-4">Ver Catalogo</a>
+          <a href="/catalogo.html?descuento=1" class="btn btn-acento btn-lg px-4">Ver Ofertas</a>
+        </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIAS -->
+  <section class="py-5">
+    <div class="container-xl">
+      <h2 class="fs-5 mb-4" style="color:var(--color-acento);">EXPLORAR POR CATEGORIA</h2>
+      <div id="grid-categorias" class="row row-cols-2 row-cols-sm-3 row-cols-md-6 g-3">
+        <div class="col">
+          <a href="/catalogo.html?categoria=Notebooks" class="cat-card">
+            <div style="font-size:2rem;margin-bottom:.5rem;">💻</div>
+            <div style="font-size:.8rem;font-weight:600;">Notebooks</div>
+          </a>
+        </div>
+        <div class="col">
+          <a href="/catalogo.html?categoria=Tarjetas%20Graficas" class="cat-card">
+            <div style="font-size:2rem;margin-bottom:.5rem;">🎮</div>
+            <div style="font-size:.8rem;font-weight:600;">Tarjetas Graficas</div>
+          </a>
+        </div>
+        <div class="col">
+          <a href="/catalogo.html?categoria=Procesadores" class="cat-card">
+            <div style="font-size:2rem;margin-bottom:.5rem;">⚡</div>
+            <div style="font-size:.8rem;font-weight:600;">Procesadores</div>
+          </a>
+        </div>
+        <div class="col">
+          <a href="/catalogo.html?categoria=Perifericos" class="cat-card">
+            <div style="font-size:2rem;margin-bottom:.5rem;">🖱️</div>
+            <div style="font-size:.8rem;font-weight:600;">Perifericos</div>
+          </a>
+        </div>
+        <div class="col">
+          <a href="/catalogo.html?categoria=Consolas" class="cat-card">
+            <div style="font-size:2rem;margin-bottom:.5rem;">🕹️</div>
+            <div style="font-size:.8rem;font-weight:600;">Consolas</div>
+          </a>
+        </div>
+        <div class="col">
+          <a href="/catalogo.html?categoria=Monitores" class="cat-card">
+            <div style="font-size:2rem;margin-bottom:.5rem;">🖥️</div>
+            <div style="font-size:.8rem;font-weight:600;">Monitores</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- BANNER OFERTA -->
+  <section class="pb-5">
+    <div class="container-xl">
+      <div class="oferta-banner p-4 d-flex justify-content-between align-items-center flex-wrap gap-4">
+        <div>
+          <p class="mb-1" style="color:var(--color-primario);font-family:'JetBrains Mono',monospace;font-size:.8rem;letter-spacing:.1em;">OFERTA ESPECIAL</p>
+          <h2 class="fs-4 mb-1">Hasta 20% de descuento<br>en Tarjetas Graficas</h2>
+          <p class="mb-0" style="color:var(--color-muted);">Valido hasta el 31 de diciembre. Stock limitado.</p>
+        </div>
+        <a href="catalogo.html" class="btn btn-primario btn-lg px-4">Ver Ofertas</a>
+      </div>
+    </div>
+  </section>
+
+
+<footer>
+  <div class="container-xl">
+    <div class="row g-4 mb-4">
+      <div class="col-12 col-sm-6 col-lg-3 footer-col">
+        <h3 class="mb-2">GAMEHUB STORE</h3>
+        <p>La tienda gamer mas completa de Chile.<br>Notebooks, GPUs, consolas, perifericos y mas.</p>
+      </div>
+      <div class="col-6 col-sm-3 col-lg-2 footer-col">
+        <h4 class="mb-3">Categorias</h4>
+        <span>Notebooks</span><br>
+        <span>Tarjetas Graficas</span><br>
+        <span>Procesadores</span><br>
+        <span>Perifericos</span><br>
+        <span>Consolas</span><br>
+        <span>Monitores</span><br>
+      </div>
+      <div class="col-6 col-sm-3 col-lg-3 footer-col">
+        <h4 class="mb-3">Ayuda</h4>
+        <span>Preguntas Frecuentes</span><br>
+        <span>Politica de Devoluciones</span><br>
+        <span>Garantias</span><br>
+        <span>Seguimiento de Orden</span><br>
+        <span>Contacto</span><br>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-4 footer-col">
+        <h4 class="mb-3">Contacto</h4>
+        <p>
+          📧 soporte@gamehub.cl<br>
+          📞 +56 2 2345 6789<br>
+          🕐 Lun–Vie 9:00–18:00<br>
+          📍 Santiago, Chile
+        </p>
+      </div>
+    </div>
+    <hr class="neon-divider">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mt-3">
+      <p class="mb-0 text-muted-gh text-sm">© 2026 GameHub Store — Desarrollo FullStack II · DSY1104</p>
+      <div class="d-flex gap-3">
+        <span class="text-muted-gh text-sm">Terminos</span>
+        <span class="text-muted-gh text-sm">Privacidad</span>
+        <span class="text-muted-gh text-sm">Cookies</span>
+      </div>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
