@@ -1,98 +1,215 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Producto</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="../css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GameHub Store — Detalle de Producto</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/styles.css" />
 </head>
 <body>
-    <header>
-  <nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container-xl">
 
-      <a href="/index.html" class="logo navbar-brand" aria-label="GameHub Store - Inicio">
-        <span class="logo-game">GAME</span><span class="logo-hub">HUB</span>
-        <span class="logo-sub ms-1">STORE</span>
-      </a>
+<div id="site-header"></div>
 
-      <div class="d-flex align-items-center gap-2 order-lg-last">
-        <a href="/carrito.html" class="btn btn-ghost position-relative px-2 py-1" aria-label="Ver carrito de compras">
-          🛒
-          <span id="carrito-badge" class="carrito-badge d-none">0</span>
-        </a>
-        <button class="navbar-toggler ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menu">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto gap-1 py-2 py-lg-0">
-          <li class="nav-item">
-            <a class="nav-link activo" href="/index.html" data-pagina="inicio">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/catalogo.html" data-pagina="catalogo">Catalogo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/ordenes.html" data-pagina="ordenes">Mis Ordenes</a>
-          </li>
-        </ul>
-      </div>
-
-    </div>
-  </nav>
-</header>
-
-
-
-<footer>
+<main class="py-5">
   <div class="container-xl">
-    <div class="row g-4 mb-4">
-      <div class="col-12 col-sm-6 col-lg-3 footer-col">
-        <h3 class="mb-2">GAMEHUB STORE</h3>
-        <p>La tienda gamer mas completa de Chile.<br>Notebooks, GPUs, consolas, perifericos y mas.</p>
-      </div>
-      <div class="col-6 col-sm-3 col-lg-2 footer-col">
-        <h4 class="mb-3">Categorias</h4>
-        <span>Notebooks</span><br>
-        <span>Tarjetas Graficas</span><br>
-        <span>Procesadores</span><br>
-        <span>Perifericos</span><br>
-        <span>Consolas</span><br>
-        <span>Monitores</span><br>
-      </div>
-      <div class="col-6 col-sm-3 col-lg-3 footer-col">
-        <h4 class="mb-3">Ayuda</h4>
-        <span>Preguntas Frecuentes</span><br>
-        <span>Politica de Devoluciones</span><br>
-        <span>Garantias</span><br>
-        <span>Seguimiento de Orden</span><br>
-        <span>Contacto</span><br>
-      </div>
-      <div class="col-12 col-sm-6 col-lg-4 footer-col">
-        <h4 class="mb-3">Contacto</h4>
-        <p>
-          📧 soporte@gamehub.cl<br>
-          📞 +56 2 2345 6789<br>
-          🕐 Lun–Vie 9:00–18:00<br>
-          📍 Santiago, Chile
-        </p>
-      </div>
+
+    <!-- BREADCRUMB -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/index.html">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="/catalogo.html">Catálogo</a></li>
+        <li class="breadcrumb-item active" id="bc-producto" aria-current="page">Producto</li>
+      </ol>
+    </nav>
+
+    <!-- PRODUCTO NO ENCONTRADO -->
+    <div id="prod-no-encontrado" class="vacio" style="display:none;">
+      <div class="vacio-icono">🔍</div>
+      <h2 class="mt-3">Producto no encontrado</h2>
+      <p>El producto que estás buscando no existe o ya no se encuentra disponible.</p>
+      <a href="/catalogo.html" class="btn btn-primario mt-3">Volver al catálogo</a>
     </div>
-    <hr class="neon-divider">
-    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mt-3">
-      <p class="mb-0 text-muted-gh text-sm">© 2024 GameHub Store — Desarrollo FullStack II · DSY1104</p>
-      <div class="d-flex gap-3">
-        <span class="text-muted-gh text-sm">Terminos</span>
-        <span class="text-muted-gh text-sm">Privacidad</span>
-        <span class="text-muted-gh text-sm">Cookies</span>
+
+    <!-- DETALLE DEL PRODUCTO -->
+    <div id="prod-detalle" class="row g-4 align-items-start">
+      
+      <!-- IMAGEN DEL PRODUCTO -->
+      <div class="col-12 col-md-6">
+        <div class="panel text-center p-4">
+          <img id="p-imagen" src="" alt="" class="img-fluid rounded" style="max-height: 400px; object-fit: contain;">
+        </div>
       </div>
+
+      <!-- INFORMACIÓN Y COMPRA -->
+      <div class="col-12 col-md-6">
+        <div class="panel">
+          <span id="p-categoria" class="badge bg-secondary mb-2">Categoría</span>
+          <p id="p-marca" class="text-muted-gh mb-1 fw-bold">Marca</p>
+          <h1 id="p-nombre" class="fs-3 mb-3">Nombre del Producto</h1>
+
+          <!-- PRECIO -->
+          <div class="d-flex align-items-baseline gap-3 mb-3">
+            <span id="p-precio" class="fs-2 mono fw-bold text-acento">$0</span>
+            <span id="p-precio-original" class="text-muted-gh text-decoration-line-through mono" style="display:none;">$0</span>
+            <span id="p-badge-dcto" class="badge bg-danger" style="display:none;">0% OFF</span>
+          </div>
+
+          <p id="p-descripcion" class="text-muted-gh mb-4">Descripción detallada del producto.</p>
+
+          <!-- STOCK Y CANTIDAD -->
+          <div class="d-flex align-items-center gap-3 mb-4">
+            <label for="p-cantidad" class="form-label mb-0 fw-bold">Cantidad:</label>
+            <div class="cantidad-ctrl">
+              <button id="btn-menos" class="qty-btn">-</button>
+              <input type="text" id="p-cantidad" class="form-control qty-input form-control-sm" value="1" readonly>
+              <button id="btn-mas" class="qty-btn">+</button>
+            </div>
+            <span id="p-stock" class="text-muted-gh" style="font-size:.875rem;">Stock disponible: 0</span>
+          </div>
+
+          <!-- BOTONES DE ACCIÓN -->
+          <div class="d-flex flex-column gap-2">
+            <button id="btn-agregar-cart" class="btn btn-primario btn-lg w-100">🛒 Agregar al carrito</button>
+            <button id="btn-comprar-ahora" class="btn btn-acento w-100">Comprar ahora</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ESPECIFICACIONES TÉCNICAS -->
+      <div class="col-12 mt-4">
+        <div class="panel">
+          <p class="panel-titulo">ESPECIFICACIONES TÉCNICAS</p>
+          <div id="p-specs" class="row g-3"></div>
+        </div>
+      </div>
+
     </div>
+
   </div>
-</footer>
-    
+</main>
+
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/layout.js"></script>
+<script>
+  initLayout("catalogo");
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  /* Cargar producto desde URL */
+  const params = new URLSearchParams(window.location.search);
+  const prodId = Number(params.get("id"));
+  const producto = PRODUCTOS.find(p => p.id === prodId);
+
+  const panelDetalle = document.getElementById("prod-detalle");
+  const panelNoEncontrado = document.getElementById("prod-no-encontrado");
+
+  let cantidadSeleccionada = 1;
+
+  if (!producto) {
+    panelDetalle.style.display = "none";
+    panelNoEncontrado.style.display = "block";
+  } else {
+    panelDetalle.style.display = "flex";
+    panelNoEncontrado.style.display = "none";
+
+    document.title = `GameHub Store — ${producto.nombre}`;
+    document.getElementById("bc-producto").textContent = producto.nombre;
+
+    document.getElementById("p-imagen").src = imgUrl(producto.imagen, 600, 450);
+    document.getElementById("p-imagen").alt = producto.nombre;
+    document.getElementById("p-categoria").textContent = producto.categoria;
+    document.getElementById("p-marca").textContent = producto.marca;
+    document.getElementById("p-nombre").textContent = producto.nombre;
+    document.getElementById("p-descripcion").textContent = producto.descripcion;
+    document.getElementById("p-stock").textContent = `Stock disponible: ${producto.stock}`;
+
+    /* Cálculo de precio y descuento */
+    const pFinal = precioFinal(producto);
+    document.getElementById("p-precio").textContent = fmt(pFinal);
+
+    if (producto.descuento > 0) {
+      document.getElementById("p-precio-original").textContent = fmt(producto.precio);
+      document.getElementById("p-precio-original").style.display = "inline";
+      document.getElementById("p-badge-dcto").textContent = `-${producto.descuento}%`;
+      document.getElementById("p-badge-dcto").style.display = "inline";
+    }
+
+    /* Especificaciones técnicas */
+    const containerSpecs = document.getElementById("p-specs");
+    if (producto.specs && Object.keys(producto.specs).length > 0) {
+      Object.entries(producto.specs).forEach(([clave, valor]) => {
+        const item = document.createElement("div");
+        item.className = "col-12 col-sm-6 col-md-4";
+        item.innerHTML = `
+          <div class="p-2 border border-secondary border-opacity-25 rounded">
+            <small class="text-muted-gh d-block text-uppercase" style="font-size:.75rem;">${escapeHtml(clave)}</small>
+            <span class="fw-bold" style="font-size:.9rem;">${escapeHtml(valor)}</span>
+          </div>
+        `;
+        containerSpecs.appendChild(item);
+      });
+    } else {
+      containerSpecs.innerHTML = `<p class="text-muted-gh mb-0">No hay especificaciones detalladas para este producto.</p>`;
+    }
+
+    /* Control de cantidad */
+    const inputQty = document.getElementById("p-cantidad");
+    document.getElementById("btn-menos").addEventListener("click", () => {
+      if (cantidadSeleccionada > 1) {
+        cantidadSeleccionada--;
+        inputQty.value = cantidadSeleccionada;
+      }
+    });
+
+    document.getElementById("btn-mas").addEventListener("click", () => {
+      if (cantidadSeleccionada < producto.stock) {
+        cantidadSeleccionada++;
+        inputQty.value = cantidadSeleccionada;
+      }
+    });
+
+    /* Agregar al carrito */
+    document.getElementById("btn-agregar-cart").addEventListener("click", () => {
+      const carrito = getCarrito();
+      const item = carrito.find(l => l.productoId === producto.id);
+
+      if (item) {
+        item.cantidad = Math.min(item.cantidad + cantidadSeleccionada, producto.stock);
+      } else {
+        carrito.push({ productoId: producto.id, cantidad: cantidadSeleccionada });
+      }
+
+      saveCarrito(carrito);
+      initNav("catalogo");
+      mostrarNotif(`Agregado: ${producto.nombre} (${cantidadSeleccionada})`);
+    });
+
+    /* Comprar ahora */
+    document.getElementById("btn-comprar-ahora").addEventListener("click", () => {
+      const carrito = getCarrito();
+      const item = carrito.find(l => l.productoId === producto.id);
+
+      if (item) {
+        item.cantidad = Math.min(item.cantidad + cantidadSeleccionada, producto.stock);
+      } else {
+        carrito.push({ productoId: producto.id, cantidad: cantidadSeleccionada });
+      }
+
+      saveCarrito(carrito);
+      window.location.href = "/checkout.html";
+    });
+  }
+</script>
 </body>
 </html>
