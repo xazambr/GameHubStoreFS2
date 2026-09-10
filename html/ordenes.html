@@ -1,98 +1,156 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ordenes</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="../css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GameHub Store — Mis Órdenes</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/styles.css" />
 </head>
 <body>
-    <header>
-  <nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container-xl">
 
-      <a href="/index.html" class="logo navbar-brand" aria-label="GameHub Store - Inicio">
-        <span class="logo-game">GAME</span><span class="logo-hub">HUB</span>
-        <span class="logo-sub ms-1">STORE</span>
-      </a>
+<div id="site-header"></div>
 
-      <div class="d-flex align-items-center gap-2 order-lg-last">
-        <a href="/carrito.html" class="btn btn-ghost position-relative px-2 py-1" aria-label="Ver carrito de compras">
-          🛒
-          <span id="carrito-badge" class="carrito-badge d-none">0</span>
-        </a>
-        <button class="navbar-toggler ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menu">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto gap-1 py-2 py-lg-0">
-          <li class="nav-item">
-            <a class="nav-link activo" href="/index.html" data-pagina="inicio">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/catalogo.html" data-pagina="catalogo">Catalogo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/ordenes.html" data-pagina="ordenes">Mis Ordenes</a>
-          </li>
-        </ul>
-      </div>
-
-    </div>
-  </nav>
-</header>
-
-
-
-<footer>
+<main class="py-5">
   <div class="container-xl">
-    <div class="row g-4 mb-4">
-      <div class="col-12 col-sm-6 col-lg-3 footer-col">
-        <h3 class="mb-2">GAMEHUB STORE</h3>
-        <p>La tienda gamer mas completa de Chile.<br>Notebooks, GPUs, consolas, perifericos y mas.</p>
-      </div>
-      <div class="col-6 col-sm-3 col-lg-2 footer-col">
-        <h4 class="mb-3">Categorias</h4>
-        <span>Notebooks</span><br>
-        <span>Tarjetas Graficas</span><br>
-        <span>Procesadores</span><br>
-        <span>Perifericos</span><br>
-        <span>Consolas</span><br>
-        <span>Monitores</span><br>
-      </div>
-      <div class="col-6 col-sm-3 col-lg-3 footer-col">
-        <h4 class="mb-3">Ayuda</h4>
-        <span>Preguntas Frecuentes</span><br>
-        <span>Politica de Devoluciones</span><br>
-        <span>Garantias</span><br>
-        <span>Seguimiento de Orden</span><br>
-        <span>Contacto</span><br>
-      </div>
-      <div class="col-12 col-sm-6 col-lg-4 footer-col">
-        <h4 class="mb-3">Contacto</h4>
-        <p>
-          📧 soporte@gamehub.cl<br>
-          📞 +56 2 2345 6789<br>
-          🕐 Lun–Vie 9:00–18:00<br>
-          📍 Santiago, Chile
-        </p>
-      </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+      <h1 class="fs-4 mb-0">MIS ÓRDENES</h1>
+      <span class="text-muted-gh" style="font-size:.875rem;">Historial y seguimiento de tus compras</span>
     </div>
-    <hr class="neon-divider">
-    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mt-3">
-      <p class="mb-0 text-muted-gh text-sm">© 2024 GameHub Store — Desarrollo FullStack II · DSY1104</p>
-      <div class="d-flex gap-3">
-        <span class="text-muted-gh text-sm">Terminos</span>
-        <span class="text-muted-gh text-sm">Privacidad</span>
-        <span class="text-muted-gh text-sm">Cookies</span>
-      </div>
+
+    <!-- SIN ÓRDENES -->
+    <div id="ordenes-vacias" class="vacio" style="display:none;">
+      <div class="vacio-icono">📦</div>
+      <h2 class="mt-3">Aún no tienes órdenes registradas</h2>
+      <p>Cuando realices una compra, podrás ver el seguimiento de tu paquete aquí.</p>
+      <a href="/catalogo.html" class="btn btn-primario mt-3">Ir al catálogo</a>
     </div>
+
+    <!-- LISTADO DE ÓRDENES -->
+    <div id="lista-ordenes" class="d-flex flex-column gap-4"></div>
+
   </div>
-</footer>
-    
+</main>
+
+<div id="site-footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/layout.js"></script>
+<script>
+  initLayout("ordenes");
+
+  /* Datos simulados de órdenes de prueba */
+  const ORDENES_MOCK = [
+    {
+      id: "GH-89021",
+      fecha: "2024-11-18",
+      estado: "En camino",
+      pasoActual: 3,
+      total: 1299990,
+      productos: [
+        { productoId: 1, cantidad: 1 }
+      ]
+    },
+    {
+      id: "GH-78104",
+      fecha: "2024-10-05",
+      estado: "Entregado",
+      pasoActual: 4,
+      total: 189990,
+      productos: [
+        { productoId: 4, cantidad: 1 }
+      ]
+    }
+  ];
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function renderOrdenes() {
+    const contenedor = document.getElementById("lista-ordenes");
+    const vacio = document.getElementById("ordenes-vacias");
+
+    if (ORDENES_MOCK.length === 0) {
+      vacio.style.display = "block";
+      contenedor.style.display = "none";
+      return;
+    }
+
+    vacio.style.display = "none";
+    contenedor.style.display = "flex";
+    contenedor.innerHTML = "";
+
+    ORDENES_MOCK.forEach(orden => {
+      const card = document.createElement("div");
+      card.className = "panel";
+
+      let productosHtml = "";
+      orden.productos.forEach(item => {
+        const prod = PRODUCTOS.find(p => p.id === item.productoId);
+        if (prod) {
+          productosHtml += `
+            <div class="d-flex align-items-center gap-3 py-2 border-bottom border-secondary border-opacity-25">
+              <img src="${imgUrl(prod.imagen, 100, 75)}" alt="${escapeHtml(prod.nombre)}" style="width:60px;height:45px;object-fit:cover;border-radius:4px;">
+              <div class="flex-fill">
+                <p class="mb-0 fw-bold" style="font-size:.9rem;">${escapeHtml(prod.nombre)}</p>
+                <p class="mb-0 text-muted-gh" style="font-size:.75rem;">Cantidad: ${item.cantidad}</p>
+              </div>
+              <span class="mono fw-bold" style="font-size:.875rem;">${fmt(precioFinal(prod) * item.cantidad)}</span>
+            </div>
+          `;
+        }
+      });
+
+      const pasos = ["Confirmado", "En preparación", "En camino", "Entregado"];
+      let timelineHtml = `<div class="timeline">`;
+      pasos.forEach((pasoLabel, idx) => {
+        const numPaso = idx + 1;
+        const completado = numPaso <= orden.pasoActual;
+        timelineHtml += `
+          <div class="timeline-paso">
+            <div class="timeline-circulo ${completado ? "hecho" : ""}">${completado ? "✓" : numPaso}</div>
+            <span class="timeline-label ${completado ? "hecho" : ""}">${pasoLabel}</span>
+          </div>
+        `;
+      });
+      timelineHtml += `</div>`;
+
+      card.innerHTML = `
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+          <div>
+            <span class="fw-bold fs-5 text-acento">${orden.id}</span>
+            <span class="text-muted-gh ms-2" style="font-size:.85rem;">· Fecha: ${orden.fecha}</span>
+          </div>
+          <div>
+            <span class="estado-tag bg-primario">${orden.estado}</span>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          ${productosHtml}
+        </div>
+
+        ${timelineHtml}
+
+        <div class="d-flex justify-content-between align-items-center mt-4 pt-2 border-top border-secondary border-opacity-25">
+          <span class="text-muted-gh" style="font-size:.875rem;">Total pagado:</span>
+          <span class="mono fs-5 fw-bold text-acento">${fmt(orden.total)}</span>
+        </div>
+      `;
+
+      contenedor.appendChild(card);
+    });
+  }
+
+  renderOrdenes();
+</script>
 </body>
 </html>
